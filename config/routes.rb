@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  get 'shopping_carts/index'
-    devise_for :users, :controllers => {
+  devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
     :passwords => 'users/passwords',
     :confirmations => 'users/confirmations',
     :unlocks => 'users/unlocks',
-    }
+  }
 
   devise_scope :user do
     root :to => "users/sessions#new"
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
   
   resource :users, only: [:edit, :update] do
     collection do
+      get "cart", :to => "shopping_carts#index"
+      post "cart/create", :to => "shopping_carts#create"
       get "mypage", :to => "users#mypage"
       get "mypage/edit", :to => "users#edit"
       get "mypage/address/edit", :to => "users#edit_address"
