@@ -82,7 +82,6 @@ group :test do
 end
 
 group :production do
-  gem 'listen', '>= 3.0.5', '< 3.2'
   # postgresql
   gem 'pg'
 end
